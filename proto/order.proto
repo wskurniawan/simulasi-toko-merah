@@ -1,0 +1,47 @@
+syntax = "proto3";
+package v1;
+
+import "catalog.proto";
+
+service OrderService {
+	rpc CreateOrder(Order) returns (Response){}
+	rpc GetOrders(UserId) returns (Orders){}
+	rpc UpdateStatusOrder(Update) returns (Response){}
+	rpc DeleteOrder(OrderId) returns (Response){}
+}
+
+message Person {
+	string nama = 1;
+	string alamat = 2;
+	string telepon = 3;
+	string email = 4;
+}
+
+message Order {
+	Vendor vendor = 1;
+	string id = 2;
+	Person pembeli = 3;
+	Product barang = 4;
+	int32 kuantitas = 5;
+	string status = 6;
+	int64 created_at = 7;
+}
+
+message Update {
+	Vendor vendor = 1;
+	string id = 2;
+	string status = 3;
+}
+
+message OrderId {
+	Vendor vendor = 1;
+	string orderId = 2;
+}
+
+message UserId {
+	string id = 1;
+}
+
+message Orders {
+	repeated Order orders = 1;
+}

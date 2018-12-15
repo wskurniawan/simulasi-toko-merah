@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>Bukalapak Order Management (Simulation)</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" type="text/css" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+</head>
+
+<body class="has-navbar-fixed-top">
+   <nav class="navbar is-fixed-top is-info" style="background: #d71149;">
+      <div class="navbar-brand">
+         <a class="navbar-item" href="https://bulma.io">
+            <img src="https://s0.bukalapak.com/images/logo/single_260x41_10_white_20062016.png" alt="Bulma: a modern CSS framework based on Flexbox"
+               width="96" height="30">
+         </a>
+      </div>
+      <div class="navbar-start">
+         <div class="navbar-item">
+            <h2><b>Order Management Simulation</b></h2>
+         </div>
+      </div>
+   </nav>
+   <div id="app">
+      <section class="section">
+         <div class="container is-fullhd">
+            <h1 class="title">Order Masuk</h1>
+            <prod-modal></prod-modal>
+            <update-status></update-status>
+            <pembeli-modal></pembeli-modal>
+            <div class="columns">
+               <div class="column">
+                  <table class="table is-striped is-fullwidth">
+                     <thead>
+                        <tr>
+                           <th><abbr title="Order ID">Id</abbr></th>
+                           <th><abbr title="Nama"></abbr>Nama Produk</th>
+                           <th><abbr title="Kategori"></abbr>Kategori</th>
+                           <th><abbr title="Pieces">Pcs</abbr></th>
+                           <th><abbr title="Nilai Pembayaran">Pembayaran</abbr></th>
+                           <th><abbr title="Pembeli">Pembeli</abbr></th>
+                           <th><abbr title="Status">Status</abbr></th>
+                           <th><abbr title="Action">Action</abbr></th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <% list_order.forEach(function(item, index){ %>
+                           <tr v-for="order in orders">
+                              <td><%= item._id %></td>
+                              <td><%= item.barang.produk %></a></td>
+                              <td><%= item.barang.kategori %></td>
+                              <td><%= item.kuantitas %></td>
+                              <td><%= item.barang.harga %></td>
+                              <td><a v-on:click='selectPerson(order.id)'><%= item.pembeli.nama %></a></td>
+                              <td><span class="tag is-info"><%= item.status %></span></td>
+                              <td><a href="/update-order/<%= item._id %>">Update</a></td>
+                           </tr>
+                        <% }) %>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+
+      </section>
+   </div>
+
+</body>
+
+</html>
